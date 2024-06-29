@@ -1,27 +1,77 @@
-# DavinciPicAngular
+# DavinciTokenPicComponent
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
+The `DavinciTokenPicComponent` is an Angular component designed for fetching and displaying images of cryptocurrency tokens from the davinciPics API. It supports displaying pictures for individual tokens as well as liquidity pool (LP) tokens. This component integrates smoothly into any Angular application and handles both direct token image URLs and fetching from the API based on network and token address.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Dynamic Image Fetching:** Automatically fetches token images based on the provided network and address.
 
-## Code scaffolding
+**Fallback Handling:** Utilizes a backup API endpoint in case the primary request fails.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Lazy Loading:** Images are only loaded as they are about to enter the viewport, optimizing resource usage and performance.
 
-## Build
+**Customizable Appearance:** Allows for customization of image size and shape (circular or square).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Attributes
 
-## Running unit tests
+**network:** Specifies the blockchain network of the token. Default is 'hedera'.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**address:** The contract address of the token for which to fetch the image. This is a required attribute.
 
-## Running end-to-end tests
+**pic:** A direct URL to a token image. If provided, bypasses the API fetch and uses this URL directly.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**size:** Size of the image in pixels. Defaults to 100.
 
-## Further help
+**circled:** Boolean indicating whether the image should be displayed as a circle. Defaults to true, making the image circular regardless of its original shape.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Installation
+
+To use DavinciTokenPicComponent in your project, ensure you have Angular installed and then copy the `src/app/davinci-token-pic` directory in your module:
+
+```JAVSCRIPT
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { DavinciTokenPicComponent } from './path/to/davinci-token-pic.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    DavinciTokenPicComponent  // Declare the component
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
+
+## Usage Examples
+
+### Basic Usage
+
+Simply add the component to your Angular template and provide the required attributes:
+
+```JAVASCRIPT
+<davinci-token-pic
+  network="ethereum"
+  address="0x...contract address..."
+  size="150"
+  circled="false">
+</davinci-token-pic>
+```
+
+### With Direct Image URL
+
+If you have a direct URL to the token image:
+
+```JAVASCRIPT
+<davinci-token-pic
+  pic="https://example.com/path/to/image.jpg"
+  size="200"
+  circled="true">
+</davinci-token-pic>
+
+```

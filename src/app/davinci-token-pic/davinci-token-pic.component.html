@@ -1,0 +1,32 @@
+<div
+  #observerRef
+  class="observed-container"
+  [style.width]="size + 'px'"
+  [style.height]="size + 'px'"
+>
+  <div *ngIf="data" style="display: flex; height: 100%; align-items: center">
+    <div
+      *ngIf="data?.token0 || data?.token1; else tokenPic"
+      style="display: flex; align-items: center; justify-content: space-between"
+    >
+      <img
+        src="{{ data?.token0?.pic || lpNotFoundPlaceholder || '' }}"
+        style="width: 62.5%"
+        [style.borderRadius]="circled ? '50%' : '0px'"
+      />
+      <img
+        src="{{ data?.token1?.pic || lpNotFoundPlaceholder || '' }}"
+        style="margin-left: -25%; width: 62.5%"
+        [style.borderRadius]="circled ? '50%' : '0px'"
+      />
+    </div>
+    <ng-template #tokenPic>
+      <img
+        src="{{ data?.pic || '' }}"
+        [style.borderRadius]="circled ? '50%' : '0px'"
+        [style.width]="size + 'px'"
+        [style.height]="size + 'px'"
+      />
+    </ng-template>
+  </div>
+</div>
