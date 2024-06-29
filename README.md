@@ -16,7 +16,7 @@ The `DavinciTokenPicComponent` is an Angular component designed for fetching and
 
 **network:** Specifies the blockchain network of the token. Default is 'hedera'.
 
-**address:** The contract address of the token for which to fetch the image. This is a required attribute.
+**address:** The address of the token for which to fetch the image. This is a required attribute when the following attribute is no present.
 
 **pic:** A direct URL to a token image. If provided, bypasses the API fetch and uses this URL directly.
 
@@ -56,10 +56,10 @@ Simply add the component to your Angular template and provide the required attri
 
 ```JAVASCRIPT
 <davinci-token-pic
-  network="ethereum"
-  address="0x...contract address..."
+  network="hedera"
+  address="0.0.1234567"
   size="150"
-  circled="false">
+  circled="true">
 </davinci-token-pic>
 ```
 
@@ -71,7 +71,7 @@ If you have a direct URL to the token image:
 <davinci-token-pic
   pic="https://example.com/path/to/image.jpg"
   size="200"
-  circled="true">
+  circled="false">
 </davinci-token-pic>
 
 ```
